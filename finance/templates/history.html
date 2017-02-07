@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    FINANCE50 - Stock Buy & Sell
+{% endblock %}
+
+{% block main %}
+    <table id=index_head>
+        <tr>
+            <th colspan="2" rowspan="2"><h1>Welcome, {{ username }}! Here's your account history.</h1></th>
+        </tr>
+    </table>
+    <table id=portfolio>
+        <tr>
+            <th>DATE</th>
+            <th colspan="3">TRANSACTION</th>
+        </tr>
+        {% for transaction in transactions %}
+        <tr>
+            <td>
+                {{ transaction.timestamp }}
+            </td>
+            <td>
+                <font size="3">
+                <b>{% if transaction.transaction_type|string() == 'BUY' %}<font color="green">Bought</font>
+                {% else %}<font color="red">Sold</font>{% endif %}</b>
+                {{ transaction.quantity }}
+                {{ transaction.stock_symbol }}
+                {% if transaction.quantity > 1 %}shares
+                {% else %}share{% endif %}
+                for price
+                {{ transaction.price }}
+                </font>
+            </td>
+        </tr>    
+        {% endfor %}
+    </table>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    FINANCE50 - Stock Buy & Sell
+{% endblock %}
+
+{% block main %}
+    <table id=index_head>
+        <tr>
+            <th colspan="2" rowspan="2"><h1>Welcome, {{ username }}!</h1></th>
+            <td>
+                <b>CURRENT BALANCE:</b><br>
+                <font color=grey size=5>{{ cash }}</font><br><br>
+                <b>NET WORTH:</b><br>
+                <font color="#aa0000" size=6>{{ net_worth }}</font>
+            </td>
+        </tr>
+    </table>
+    <table id=portfolio>
+        <tr>
+            <th colspan="3">PORTFOLIO</th>
+            <th rowspan="2">TOTAL</th>
+        </tr>
+        <tr>
+            <th>STOCK</th>
+            <th>CURRENT VALUE</th>
+            <th>OWNED</th>
+        </tr>
+        {% for stock in holdings %}
+        <tr>
+            <td>
+                <font size="6">{{ stock.name }}</font> [
+                <i><b><font size="4" color="#a01e1e">{{ stock.symbol }}</font></b></i> ]
+            </td>
+            <td>
+                {{ stock.price }}
+            </td>
+            <td>
+                {{ stock.quantity }}
+            </td>
+            <td>
+                {{ stock.total }}
+            </td>
+        </tr>    
+        {% endfor %}
+        <tr>
+            <th colspan="3">HOLDINGS VALUE</td>
+            <th> {{ portfolio_value }}</th>
+        </tr>
+    </table>
+{% endblock %}
